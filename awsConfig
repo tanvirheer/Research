@@ -1,0 +1,17 @@
+Documentation by: Tanvir Heer
+
+# Configuring AWS CLI on Linux on mada0 server.
+
+$ pip install awscli --upgrade --user
+$	aws —-version #If error -> fix $PATH
+  fix: $ ls -a ~
+       $ cd ~/.bashrc
+       $ export PATH=${PATH}:~/.local/bin:#$PATH
+       $ source ~/.bashrc
+      
+# aws --version will show now.
+# Regularly update: pip install awscli --upgrade --user
+
+# Setting user permissions
+
+$ aws configure #user -> self-cli
