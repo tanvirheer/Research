@@ -1,0 +1,159 @@
+###################################################################################
+MASC LAB RESEARCH
+AUTHOR: TANVIR HEER
+###################################################################################
+
+//March 4th, 2018
+
+Target Lgraph synthesis infrastructure ->open source FPGA FLOW -> FPGA Synthesis.
+open source FPGA Flow. (Might be simple).
+graph flow -> making it work with Amazon cloud using their open source flow
+This will allow people to use our open flow source and synthesis on the amazon cloud
+Xilinx FPGA Vivado (LAB) - Lgraph -> interface with amazon and trying to make work.
+This will allow to run placement and routing in the cloud.
+A lot of hacking, installing linux, vivado, docker?, etc. “hacking” to get to the amazon cloud. Essentially systems programming.
+
+Updates:
+
+- Amazon AWS Server setup, packages downloaded;
+- Amazon EC2 Instance running w/ virtual server;
+
+//March 20th, 2018
+
+Pre-REquesuits: AWS Account
+
+EC2 > Spot Requests > Request Spot Instances (Cheaper) @ 1 Instance
+Notes: Need AWS Command Line interface on terminal.
+Link: https://docs.aws.amazon.com/cli/latest/userguide/cli-install-macos.html#awscli-install-osx-path
+Command: brew install awscli
+AWS Configure Link: https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#cli-quick-configuration
+-Accounts can be added for non-root access.
+
+API References: https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ec2-api.pdf#errors-overview
+
+Step 0: Run: aws ec2 get-console-output --instance-id (instance ID)
+Step 1: ssh -i <key> ec2-user@<ec2 ip>
+
+Updates:
+
+- Installed AWS CLI (Command Line)
+- Configured AWS user with permissions.
+Error: Could not connect to the endpoint URL: "https://ec2.us-west-1b.amazonaws.com/"
+	- Fix region issue for connection (~/.aws/config file). 
+	- Problem Resolved[X]
+Error: Permission denied (publickey).
+	- On terminal, ssh -i <key> ec2-user@<ec2 ip>
+	- Problem Resolved[X]
+
+
+// March 21st, 2018
+
+SSH Login command: ssh -i /Users/Tony/Desktop/masclab.pem ec2-user@ec2-13-57-245-151.us-west-1.compute.amazonaws.com
+
+	- This assumes user has masclab.pem (Root Access). If other user needs access, permissions via AWS account permissions must be set, access username with access key must be created.
+-sudo yum update (updates Amazon packages).
+
+Run: “lspcu” on terminal to look at metrics for cache, CPU, cores, etc. x86_64 architecture
+
+
+// May 1st, 2018
+
+Note: ssh server into masc -> “masclab” via terminal.
+
+Objective: 
+
+	1.Use Amazon Lambda (Free source compared to AWS account) to 
+	implement simple hello world script in the cloud. 			[DONE]
+	2.Compare with Google cloud functionality. 				
+	3.Next step would be to implement lgraph synthesis onto the cloud.
+
+-Cloned lgraph into mada0 server.
+
+Introduction AWS Lambdra
+	- Allows applications to Scale, Size, security patches, managing infrastructure
+	- Runs backend code (Handles all capacity, patching, scaling, and administration)
+	- Charged low fee per request. 
+	- Upload code as ZIP file or design in integrated environment in console.
+	- S3 Bucket - File storage (videos, logs, images, files, updates) has no limit of storage, no transactions but versioning is a cost
+	- DynamoDB - Database (NoSQL, key/value or document store. Storing large number of small records, limit size is 64KB). R/W, 4kb/sec, 1kb/sec payment.
+	- 1 Million free requests per month and 400,000 GB-seconds of compute type per 	month
+	-Server runs only when function is triggered and executed, trigger can be a http request, or an image arrived in the s3 bucket - lets change it, or some update, etc.
+	- You do not pay for functions if not executed
+
+Quick Recap: AWS Lambda is server less compute -> runs code in response to an event and automatically manages the computing resources for you at high performance. (No need to worry about capacity, code monitoring, capacity, system maintenance) All you need to do is supply code!
+
+The code you run on AWS Lambda is called “Lambda Function”.
+
+AWS Lambda supports Node.js (Javascript), Python, Java, and C#.
+
+AWS Lambda stores code in Aamazon S3 and encrypts it
+A job cannot run more than 300 seconds. (can be manually set between 1-300).
+
+// May 2nd, 2018
+
+Updates:
+
+- Created new AWS account for amazon Lambda; (AWS is free only 12 months).
+- Create function (There are codes from scratch or blueprints (templates for start).
+- Create function “helloWorld” in Python 3.6. [X]
+	-AWS Lambda Permission: Role -> Simple Microservice Permissions
+		- Allows all permissions for AWS Lambda to run function.
+ 	Event: AWS can pass the data and query a string to your lambda function
+	Context: shows information run time of execution and memory limits.
+
+- Successfully ran helloWorld on AWS Lambda
+	- Memory used: 21 MB. Time: 10.60 ms
+- Created metrics on dashboard to view output, time, bits.
+- Created “CLCO” folder on github -> Add supplement code here.
+
+Error: Running lGraph - FIX.
+
+// May 4th, 2018
+
+TODOs: 	
+	- Create AWS Lambda function using AWS CLI - [DONE]
+   	- Create Google Cloud Computing.
+	- Figure out if C++ code can be implemented using AWS.
+	- Fix lGraph error and read source code.
+
+
+Commands:
+
+	$ pip install awscli --upgrade --user
+	-> installs all dependencies of AWS>
+
+The AWS CLI is on local machine that allows to interact with amazon web services.
+As functions increase, you could write your own script to handle functions.
+-Install AWS CLI.
+-Manage permissions for users and policies.
+	-self-cli -> fullLambdaFunction Permissions set.
+AWS CLI supports 3 different output forms:
+	-JSON (Using now).
+	-Text
+	-ASCII Table
+-Configure AWS CLI.
+
+Creating CLI FILE:
+1. Write code and Create it in file.Js file
+2. ZIP IT (zip -r file.zip /folder)
+3. Create-function.sh file that consists parameters.
+4. sh the .sh file.
+5. 20MB used, 18.38 ms using CLI. (Memory size; 128 MB given).
+
+
+—————————————————————————————————————
+
+
+Functionalities for AWS Lambda Vs Cloud Functionalities:
+
+
+
+
+
+
+
+
+
+
+
+
