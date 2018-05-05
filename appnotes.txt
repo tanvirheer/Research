@@ -146,6 +146,20 @@ Creating CLI FILE:
 
 Functionalities for AWS Lambda Vs Cloud Functionalities:
 
+-	AWS  		and 				Google: 
+	- Unlimited Functions			- '' ''
+	- Automatic Scaling				- 1000 functions 
+	- 1000 parallel executions		- 400 paralel executions
+	- 300 seconds execution time	- 540 S execution time
+	- JavaScript/Java/C#/Python		- Javascript
+	- Deployment: Zip Upload		- ZIP/Cloud Repos.
+	- IAM Roles						- IAM Roles
+	- Pricing: 1M free requests		- Pricing: 1M free requests
+	- $0.20/1M requests				- $0.40/1M Requests
+	+ $0.00001667/GB-sec			+ $0.00000231/GB-sec
+	
+	
+
 
 
 
