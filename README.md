@@ -10,7 +10,7 @@ $ ~/pyth/python_example2
 Execute:
 ```
 $ sudo docker build -t pythWrapper .
-$ sudo docker run myapp
+$ sudo docker run pythWrapper
 ```
 
 ### Prerequisites
