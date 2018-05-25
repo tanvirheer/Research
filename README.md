@@ -3,9 +3,9 @@
 Running Python-Wrapper C++ file via docker image (Unbuntu). This is done on Local Machine for now.
 
 ## Getting Started
-
+Add Dockerfile to path:
 ```
-Add Dockerfile to path ~/pyth/python_example2
+ ~/pyth/python_example2
 ```
 ```
 sudo docker build -t pythWrapper .
