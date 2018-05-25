@@ -5,31 +5,32 @@ Running Python-Wrapper C++ file via docker image (Unbuntu). This is done on Loca
 ## Getting Started
 Add Dockerfile to path:
 ```
- ~/pyth/python_example2
+$ ~/pyth/python_example2
 ```
 ```
-sudo docker build -t pythWrapper .
+$ sudo docker build -t pythWrapper .
 ```
 ```
-sudo docker run myapp
+$ sudo docker run myapp
 ```
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+Pybind11
+Python3-pip
 
 ```
 Give examples
 ```
 
-### Installing
+### Debugging
 
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
+Any issues can be checked via running psudo terminal to check folder/package paths.
 
 ```
-Give the example
+$ docker images
+$ docker run -it [Image ID] /bin/bash
+
 ```
 
 And repeat
